@@ -4,7 +4,7 @@
   "description": "Configured MERN frontend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Mr427/mern-frontend/issues"
   },
-  "homepage": "https://github.com/Mr427/mern-frontend#readme"
+  "homepage": "https://github.com/Mr427/mern-frontend#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6"
+  }
 }
