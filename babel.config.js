@@ -8,9 +8,10 @@ module.exports = function() {
                     firefox: "63",
                     chrome: "70",
                     safari: "12"
-                }
-            }
-        ]
+                },
+                useBuiltIns: "usage",
+            },
+        ],
     ];
     const plugins = [];
 
