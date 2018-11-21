@@ -22,23 +22,28 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {}
                     },
-                    "css-loader"
+                    {
+                        loader: "css-loader",
+                        options: {}
+                    },
+                    {
+                        loader: "resolve-url-loader",
+                        options: {}
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true,
+                            sourceMapContents: false
+                        }
+                    }
                 ]
-            },
-            {
-                test: /\.scss$/,
-                loader: ExtractPlugin.extract(
-                    [
-                        "css-loader", 
-                        "sass-loader"
-                    ]
-                )
             }
         ]
     }
