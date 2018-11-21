@@ -1,7 +1,7 @@
 module.exports = function() {
     const presets = [
         [
-            "@babel/env",
+            "@babel/preset-env",
             {
                 targets: {
                     edge: "17",
@@ -11,6 +11,9 @@ module.exports = function() {
                 },
                 useBuiltIns: "usage",
             },
+            "@babel/preset-react",
+            {
+            }
         ],
     ];
     const plugins = ["transform-object-rest-spread"];
