@@ -10,6 +10,10 @@ module.exports = {
         path: `${__dirname}/build`,
         publicPath: "/"
     },
+    plugins: [
+        new HTMLPlugin(),
+        new MiniCssExtractPlugin()
+    ],
     module: {
         rules: [
             {
@@ -37,9 +41,5 @@ module.exports = {
                 )
             }
         ]
-    },
-    plugins: [
-        new HTMLPlugin(),
-        new MiniCssExtractPlugin()
-    ]
+    }
 };
