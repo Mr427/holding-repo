@@ -5,7 +5,7 @@ class App extends React.Component {
         super(props);
     }
 
-    redner() {
+    render() {
         return (
             <div>
                 <h1>Mern</h1>
