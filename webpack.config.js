@@ -2,6 +2,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLPlugin = require("html-webpack-plugin");
 
 module.exports = {
+    mode: "production",
+    devtool: (process.env.NODE_ENV === "development")? "inline-source-map" : false,
     entry: {
         app: `${__dirname}/src/main.js`
     },
@@ -18,7 +20,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                excludes: /node_module/,
+                exclude: /node_module/,
                 loader: 'babel-loader'
             },
             {

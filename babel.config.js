@@ -1,4 +1,5 @@
-module.exports = function() {
+module.exports = function(api) {
+    api.cache(true);
     const presets = [
         [
             "@babel/preset-env",
@@ -10,11 +11,13 @@ module.exports = function() {
                     safari: "12"
                 },
                 useBuiltIns: "usage",
-            },
+            }
+        ],
+        [
             "@babel/preset-react",
             {
             }
-        ],
+        ]
     ];
     const plugins = ["transform-object-rest-spread"];
 
