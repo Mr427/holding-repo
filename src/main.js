@@ -1,6 +1,6 @@
 const React = require("react");
 const ReactDom = require("react-dom");
-const App = require("./components/app");
+const Game = require("./components/app");
 
 import "./style/scss/main-style.scss"
 /*
@@ -14,4 +14,4 @@ const container = document.createElement("div");
 container.setAttribute("id", "root");
 document.body.appendChild(container);
 
-ReactDom.render(<App />, container);
+ReactDom.render(<Game />, container);
