@@ -1,2 +1,2 @@
 #Ignore .cache/teser-webpack-plugin
-./node_modules/.cache/terser-webpack-plugin/
+.\node_modules\.cache\terser-webpack-plugin\
