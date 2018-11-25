@@ -1,7 +1,6 @@
-const React = require("react");
-const ReactDom = require("react-dom");
-const Game = require("./components/app");
-
+import React from "react";
+import ReactDom from"react-dom";
+import Game from "./components/app";
 import "./style/scss/main-style.scss"
 /*
 const styleHeader = document.createElement("link");
