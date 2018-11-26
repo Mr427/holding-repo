@@ -140,3 +140,17 @@ function calculateWinner(squares) {
   }
   return null;
 }
+
+function handleSubmit(e) {
+  e.preventDefault();
+  return superagent.get(`${__API_URL__}/movie`)
+    .then(res => {
+      this.setState({
+        imageUrl: res.body,
+      });
+    }).catch(err => {
+      this.setState({
+        hasError: true,
+      });
+    });
+}
