@@ -1,4 +1,5 @@
 import React from "react";
+import Superagent from "superagent";
 
 class TestClass extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class TestClass extends React.Component {
       <button
         onClick={(e) => {
           e.preventDefault();
-          return superagent.get("http://localhost:3030/movie")
+          return Superagent.get("http://localhost:3030/movie")
             .then(res => {
               this.setState({
                 value: JSON.stringify(res.body),
