@@ -1,13 +1,31 @@
 import React from "react";
 import Superagent from "superagent";
 
+function Image(props) {
+  return (
+    <img
+      src={props.imgUrl} 
+    />
+  );
+}
+
 class TestClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      label: this.props.label,
       value: this.props.value,
     }
   }
+
+  renderImage() {
+    return (
+      <Image
+        imgUrl={this.state.value}
+      />
+    );
+  }
+
   render() {
     return (
       <button
@@ -15,18 +33,22 @@ class TestClass extends React.Component {
           e.preventDefault();
           return Superagent.get("http://localhost:3030/movie")
             .then(res => {
+              console.log(res.text);
               this.setState({
-                value: JSON.stringify(res.body),
-              });
+                label: "Clicked!",
+                value: res.text,
+              })
+              {this.renderImage()}
             }).catch(err => {
+              console.log(err);
               this.setState({
-                value: "Error",
+                label: "Error",
               });
             });
           }
         }
       >
-        {this.state.value}
+        {this.state.label}
       </button>
     )
   }
@@ -148,7 +170,8 @@ class Game extends React.Component {
         </div>
         <div>
           <TestClass 
-            value = "Test"
+            label = "Server"
+            value = "empty"
           />
         </div>
       </div>
