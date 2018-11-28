@@ -1,5 +1,23 @@
 import React from "react";
 
+class TestClass extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.props.value,
+    }
+  }
+  render() {
+    return (
+      <button
+        onClick={() => { this.setState({value: "Clicked"}) }}
+      >
+        {this.state.value}
+      </button>
+    )
+  }
+}
+
 function Square(props) {
   return (
     <button 
@@ -113,6 +131,11 @@ class Game extends React.Component {
         <div className="game-info">
           <div>{status}</div>
           <ol>{moves}</ol>
+        </div>
+        <div>
+          <TestClass 
+            value = "Test"
+          />
         </div>
       </div>
     );
