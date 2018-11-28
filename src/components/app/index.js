@@ -10,7 +10,20 @@ class TestClass extends React.Component {
   render() {
     return (
       <button
-        onClick={() => { this.setState({value: "Clicked"}) }}
+        onClick={(e) => {
+          e.preventDefault();
+          return superagent.get("http://localhost:3030/movie")
+            .then(res => {
+              this.setState({
+                value: JSON.stringify(res.body),
+              });
+            }).catch(err => {
+              this.setState({
+                value: "Error",
+              });
+            });
+          }
+        }
       >
         {this.state.value}
       </button>
@@ -169,7 +182,7 @@ function handleSubmit(e) {
   return superagent.get(`${__API_URL__}/movie`)
     .then(res => {
       this.setState({
-        imageUrl: res.body,
+        value: res.body,
       });
     }).catch(err => {
       this.setState({
