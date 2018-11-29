@@ -1,4 +1,58 @@
 import React from "react";
+import Superagent from "superagent";
+
+function Image(props) {
+  return (
+    <img
+      src={props.imgUrl} 
+    />
+  );
+}
+
+class TestClass extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      label: this.props.label,
+      value: this.props.value,
+    }
+  }
+
+  renderImage() {
+    return (
+      <Image
+        imgUrl={this.state.value}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          return Superagent.get("http://localhost:3030/movie")
+            .then(res => {
+              console.log(res.text);
+              this.setState({
+                label: "Clicked!",
+                value: res.text,
+              })
+              {this.renderImage()}
+            }).catch(err => {
+              console.log(err);
+              this.setState({
+                label: "Error",
+              });
+            });
+          }
+        }
+      >
+        {this.state.label}
+      </button>
+    )
+  }
+}
 
 function Square(props) {
   return (
@@ -114,6 +168,12 @@ class Game extends React.Component {
           <div>{status}</div>
           <ol>{moves}</ol>
         </div>
+        <div>
+          <TestClass 
+            label = "Server"
+            value = "empty"
+          />
+        </div>
       </div>
     );
   }
@@ -139,4 +199,18 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  return superagent.get(`${__API_URL__}/movie`)
+    .then(res => {
+      this.setState({
+        value: res.body,
+      });
+    }).catch(err => {
+      this.setState({
+        hasError: true,
+      });
+    });
 }
