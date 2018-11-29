@@ -19,7 +19,9 @@ module.exports = function(api) {
             }
         ]
     ];
-    const plugins = ["transform-object-rest-spread"];
+    const plugins = [
+        "@babel/plugin-proposal-object-rest-spread"
+    ];
 
     return {
         presets,
