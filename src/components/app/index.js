@@ -1,14 +1,6 @@
 import React from "react";
 import Superagent from "superagent";
 
-function Image(props) {
-  return (
-    <img
-      src={props.imgUrl} 
-    />
-  );
-}
-
 class TestClass extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +10,23 @@ class TestClass extends React.Component {
     }
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    return Superagent.get("http://localhost:3030/movie")
+      .then(res => {
+        console.log(res.text);
+        this.setState({
+          label: "Clicked!",
+          value: res.text,
+        });
+        {this.renderImage()}
+      }).catch(err => {
+        console.log(err);
+        this.setState({
+          label: "Error",
+        });
+      });
+  }
   renderImage() {
     return (
       <Image
@@ -28,28 +37,16 @@ class TestClass extends React.Component {
 
   render() {
     return (
+      <div>
       <button
-        onClick={(e) => {
-          e.preventDefault();
-          return Superagent.get("http://localhost:3030/movie")
-            .then(res => {
-              console.log(res.text);
-              this.setState({
-                label: "Clicked!",
-                value: res.text,
-              })
-              {this.renderImage()}
-            }).catch(err => {
-              console.log(err);
-              this.setState({
-                label: "Error",
-              });
-            });
-          }
-        }
+        onClick={(e) => this.handleSubmit(e)}
       >
         {this.state.label}
       </button>
+      <img
+        src={this.state.value}
+      />
+      </div>
     )
   }
 }
